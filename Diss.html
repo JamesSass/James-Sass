@@ -1,0 +1,65 @@
+<html>
+    <head>
+    	<link rel="stylesheet" href="Diss.css">
+        <script src="http://threejs.org/build/three.min.js"></script>
+        <script src="http://threejs.org/examples/js/libs/tween.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/100/three.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.5/dat.gui.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/85/three.min.js"></script>
+
+
+
+		<script src="https://unpkg.com/three@0.85.0/examples/js/controls/OrbitControls.js"></script>
+        <script src="myo.js-master/myo.js"></script>
+        <script id="vertexShader" type="x-shader/x-vertex">
+            uniform vec3 viewVector;
+            uniform float c;
+            uniform float p;
+            varying float intensity;
+            
+            void main({
+                vec3 vNormal = normalize( normalMatrix * normal );
+                vec3 vNormel = normalize( normalMatrix * viewVector );
+                intensity = pow( c - dot(vNormal, vNormel), p );
+    
+                gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+            }
+        </script>
+        <script id="fragmentShader" type="x-shader/x-fragment"> 
+            uniform vec3 glowColor;
+            varying float intensity;
+
+        void main() {
+            vec3 glow = glowColor * intensity;
+            gl_FragColor = vec4( glow, 1.0 );
+        }
+        </script>
+        <style>
+        p1.a {
+		  visibility: hidden;
+		  position: absolute;
+		  left: 0;
+		  top: 50%;
+		  width: 100%;
+		  text-align: center;
+		  font-size: 18px;
+		}
+</style>
+    </head>
+
+    <body>
+        <div id="container"</div>
+        <script src="Diss.js"></script>
+        <p1 id="Earth" class="a" style="font-family:verdana; color:Tomato; font-size: 20px;">Our home planet Earth is a rocky, terrestrial planet. It has a solid and active surface with mountains, valleys, canyons, plains and so much more. Earth is special because it is an ocean planet. Water covers 70% of Earth's surface.</p1>
+        <p1 id="Moon" class="a" style="font-family:verdana; color:Tomato; font-size: 20px;">The Moon is about 400 times smaller than the Sun, but it also just happens to be about 400 times closer. The result is that from Earth, they appear to be the same size. And when its orbit around Earth takes the Moon directly between Earth and the Sun, the Moon blocks our view of the Sun in what we call a solar eclipse."</p1>
+        <p1 id="Mercury" class="a" style="font-family:verdana; color:Tomato; font-size: 20px;">Mercury is the smallest planet in our solar system. It is just a little bigger than the moon. It is the closest planet to the sun, but it is actually not the hottest. Venus is hotter. This small planet spins around slowly compared to Earth, so one day lasts a long time. Mercury takes 59 Earth days to make one full rotation.</p1>
+        <p1 id="Venus" class="a" style="font-family:verdana; color:Tomato; font-size: 20px;">Even though Venus is not the closest planet to the sun, it is still the hottest. It has a thick atmosphere full of the greenhouse gas carbon dioxide and clouds made of sulfuric acid. Venus is unusual because it spins the opposite direction of Earth and most other planets. And its rotation is very slow. It takes about 243 Earth days to spin around just once.</p1>
+        <p1 id="Mars" class="a" style="font-family:verdana; color:Tomato; font-size: 20px;">Mars is a cold desert world. It is half the size of Earth. Mars is sometimes called the Red Planet. It's red because of rusty iron in the ground. There are signs of ancient floods on Mars, but now water mostly exists in icy dirt and thin clouds.</p1>
+        <p1 id="Jupiter" class="a" style="font-family:verdana; color:Tomato; font-size: 20px;">Jupiter is the biggest planet in our solar system. It is covered in swirling cloud stripes. It has big storms like the Great Red Spot, which has been going for hundreds of years. Jupiter is a gas giant and doesn't have a solid surface, but it may have a solid inner core about the size of Earth.</p1>
+        <p1 id="Saturn" class="a" style="font-family:verdana; color:Tomato; font-size: 20px;">The rings we see are made of groups of tiny ringlets that surround Saturn. They’re made of chunks of ice and rock. Like Jupiter, Saturn is mostly a ball of hydrogen and helium.</p1>
+        <p1 id="Uranus" class="a" style="font-family:verdana; color:Tomato; font-size: 20px;">Uranus is made of water, methane, and ammonia fluids above a small rocky center. Its atmosphere is made of hydrogen and helium like Jupiter and Saturn, but it also has methane. The methane makes Uranus blue. Uranus also has faint rings.</p1>
+        <p1 id="Neptune" class="a" style="font-family:verdana; color:Tomato; font-size: 20px;">Neptune is dark, cold, and very windy. It's more than 30 times as far from the sun as Earth is. Neptune is very similar to Uranus. It's made of a thick soup of water, ammonia, and methane over an Earth-sized solid center.</p1>
+        <p1 id="Pluto" class="a" style="font-family:verdana; color:Tomato; font-size: 20px;">Pluto is a dwarf planet that lies in the Kuiper Belt. It's an area full of icy bodies and other dwarf planets at the edge of our solar system. Pluto is actually closer to the sun than Neptune for about 8% of its orbit.</p1>
+    </body>
+</html>
+<!--        -->
